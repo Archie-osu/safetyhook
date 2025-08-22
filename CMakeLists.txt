@@ -111,6 +111,7 @@ set(safetyhook_SOURCES
 	"src/mid_hook.cpp"
 	"src/os.linux.cpp"
 	"src/os.windows.cpp"
+	"src/rp_inline_hook.cpp"
 	"src/utility.cpp"
 	"src/vmt_hook.cpp"
 	cmake.toml

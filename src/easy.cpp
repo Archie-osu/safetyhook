@@ -17,6 +17,15 @@ MidHook create_mid(void* target, MidHookFn destination, MidHook::Flags flags) {
     }
 }
 
+RpInlineHook create_rp(void* target, void* destination, RpInlineHook::Flags flags) {
+    if (auto hook = RpInlineHook::create(target, destination, flags)) {
+        return std::move(*hook);
+    }
+    else {
+        return {};
+    }
+}
+
 VmtHook create_vmt(void* object) {
     if (auto hook = VmtHook::create(object)) {
         return std::move(*hook);

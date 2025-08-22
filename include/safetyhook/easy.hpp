@@ -8,6 +8,7 @@
 #include "safetyhook/mid_hook.hpp"
 #include "safetyhook/utility.hpp"
 #include "safetyhook/vmt_hook.hpp"
+#include "safetyhook/rp_inline_hook.hpp"
 
 namespace safetyhook {
 /// @brief Easy to use API for creating an InlineHook.
@@ -44,6 +45,24 @@ template <typename T, typename U>
 template <typename T>
 [[nodiscard]] MidHook create_mid(T target, MidHookFn destination, MidHook::Flags flags = MidHook::Default) {
     return create_mid(reinterpret_cast<void*>(target), destination, flags);
+}
+
+/// @brief Easy to use API for creating an InlineHook.
+/// @param target The address of the function to hook.
+/// @param destination The address of the destination function.
+/// @param flags The flags to use.
+/// @return The InlineHook object.
+[[nodiscard]] RpInlineHook SAFETYHOOK_API create_rp(
+    void* target, void* destination, RpInlineHook::Flags flags = RpInlineHook::Default);
+
+/// @brief Easy to use API for creating an InlineHook.
+/// @param target The address of the function to hook.
+/// @param destination The address of the destination function.
+/// @param flags The flags to use.
+/// @return The InlineHook object.
+template <typename T, typename U>
+[[nodiscard]] RpInlineHook create_rp(T target, U destination, RpInlineHook::Flags flags = RpInlineHook::Default) {
+    return create_rp(reinterpret_cast<void*>(target), reinterpret_cast<void*>(destination), flags);
 }
 
 /// @brief Easy to use API for creating a VmtHook.
